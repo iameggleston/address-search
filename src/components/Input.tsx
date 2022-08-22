@@ -1,13 +1,13 @@
 import React from 'react'
+import {useMapData} from "../MapDataProvider"
 
-type Props = {
-  val: string;
-  onChangeVal: (event: React.ChangeEvent) => void;
-}
-
-const Input: React.FC<Props> = ({val, onChangeVal}) => {
+const Input: React.FC = () => {
+  const {inputVal,handleSetVal} = useMapData();
+  const onChangeVal = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    handleSetVal(event.target.value);
+  };
   return (
-    <input type="text" value={val} onChange={event => onChangeVal(event)} id="address" />
+    <input type="text" value={inputVal} onChange={event => onChangeVal(event)} id="address" />
   )
 }
 
